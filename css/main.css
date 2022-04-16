@@ -1,0 +1,9 @@
+.v-data-table td {
+    background: #2c2c2c;
+}
+.v-data-table tr:nth-child(odd) td {
+    background: #212121;
+}
+.v-data-table tr:hover td {
+    background-color: #546E7A;
+}
