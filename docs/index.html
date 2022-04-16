@@ -20,10 +20,10 @@
           <v-toolbar-title>ストック管理クライアント</v-toolbar-title>
           <v-spacer></v-spacer>
             <p class="d-none d-sm-flex">{{ activeUser }}として実行中</p>
-            <div class="d-none d-sm-flex g-signin2" data-onsuccess="onSignIn"
+            <div class="d-none d-sm-flex g-signin2" data-onsuccess="onSignIn" data-theme="dark"
               v-bind:style="{ none : IsSignined }"
             ></div>
-            <a href="#" onclick="signOut();" v-bind:style="{ none : !IsSignined }">Sign out</a>
+            <a href="#" v-on:click="signOut();" v-bind:style="{ none : !IsSignined }">Sign out</a>
         </v-app-bar>
 
         <v-navigation-drawer
@@ -45,7 +45,7 @@
           <v-list-item
             :disabled="IsSignined"
           >
-          <a href="#" onclick="signOut();">Sign out</a>
+          <a href="#" v-on:click="signOut();">Sign out</a>
           </v-list-item>
         </v-navigation-drawer>
 

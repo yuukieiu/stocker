@@ -128,8 +128,6 @@ var app = new Vue({
 
       onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
-        document.getElementById("activeUserDeskTop").textContent = profile.getEmail();
-        document.getElementById("activeUserSmartPhone").textContent = profile.getEmail();
         activeUser = profile.getEmail();
         EncryptedActiveUser = window.btoa(activeUser);
         IsSignined = true;
