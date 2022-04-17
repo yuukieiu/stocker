@@ -115,7 +115,7 @@ var app = new Vue({
       window.onload = function () {
         google.accounts.id.initialize({
           client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
-          callback: this.login,
+          callback: this.onSignIn,
           context: 'signin'
         });
         google.accounts.id.prompt();
@@ -144,8 +144,8 @@ var app = new Vue({
       },
 
       onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        this.activeUser = profile.getEmail();
+        const responseDecoded = jwt_decode(response);
+        alert('email:' + responseDecoded.email);
         this.EncryptedActiveUser = window.btoa(activeUser);
         this.IsSignined = true;
       },
