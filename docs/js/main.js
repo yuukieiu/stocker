@@ -111,19 +111,6 @@ var app = new Vue({
       this.initialize()
     },
 
-    // mounted: function() {
-    //   window.onload = function () {
-    //     let vm = this;
-    //     google.accounts.id.initialize({
-    //       client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
-    //       callback: data => vm.app.onSignIn(data),
-    //       context: 'signin',
-    //       auto_select: false
-    //     });
-    //     google.accounts.id.prompt();
-    //   };
-    // },
-
     methods: {
       async initialize () {
         let vm = this
@@ -138,11 +125,6 @@ var app = new Vue({
           })
           .finally(() => vm.loading = false)
           alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
-      },
-
-      login(credentialResponse) {
-        const responseDecoded = jwt_decode(credentialResponse);
-        alert('email:' + responseDecoded.email);
       },
 
       onSignIn(credentialResponse) {
