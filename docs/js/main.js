@@ -1,4 +1,3 @@
-const TARGET_URL = "https://script.google.com/macros/s/AKfycbwNqvlm_oag5VhLOtvBwBFL90cLLo6ryh0z0a297bfpL_o9EPNDa35no7ESL5H9X1VS/exec";
 const TARGET_URL_GETCATEGORY = TARGET_URL + "?p1=getcat";
 const TARGET_URL_GETLASTHISTORY = TARGET_URL + "?p1=gethis&p2=";
 
@@ -133,7 +132,6 @@ var app = new Vue({
             vm.stockerList = response.data
           })
           .finally(() => vm.loading = false)
-          alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
       },
 
       parseJwt(tk) {
@@ -206,7 +204,6 @@ var app = new Vue({
       },
 
       async addStockConfirm (item) {
-        //alert('追加するよ')
         var params = JSON.stringify({
           encryptedEmail: EncryptedActiveUser,
           method: 'push',
@@ -216,7 +213,6 @@ var app = new Vue({
             lastbuydate: this.editedItem.LastBuyDateDisplay
           }
         });
-        //alert('以下のデータを送信するよ。\n' + params)
         this.closeAddDialog()
         await this.postRequest(params)
         this.initialize()
@@ -240,7 +236,6 @@ var app = new Vue({
       },
 
       async subStockConfirm (item) {
-        //alert('使用するよ')
         var params = JSON.stringify({
           encryptedEmail: EncryptedActiveUser,
           method: 'pop',
@@ -250,7 +245,6 @@ var app = new Vue({
             lastunsealdate: this.editedItem.LastUnsealDateDisplay
           }
         });
-        //alert('以下のデータを送信するよ。\n' + params)
         this.closeSubDialog()
         await this.postRequest(params)
         this.initialize()
@@ -263,7 +257,6 @@ var app = new Vue({
       },
 
       async deleteItemConfirm () {
-        //alert('削除するよ')
         var params = JSON.stringify({
           encryptedEmail: EncryptedActiveUser,
           method: 'delete',
@@ -271,7 +264,6 @@ var app = new Vue({
             id: this.editedItem.StockerID
           }
         });
-        //alert('以下のデータを送信するよ。\n' + params)
         this.closeDeleteDialog()
         await this.postRequest(params)
         this.initialize()
@@ -287,7 +279,6 @@ var app = new Vue({
           }
         });
         this.closeUndoDialog()
-        //alert('送信するよ。' + params);
         await this.postRequest(params)
         this.initialize()
       },
@@ -336,7 +327,6 @@ var app = new Vue({
             notifythreshold: this.editedItem.NotifyThreshold
           }
         });
-        //alert('以下のデータを送信するよ。\n' + params)
         this.closeCreateDialog()
         await this.postRequest(params)
         this.initialize()
@@ -362,7 +352,6 @@ var app = new Vue({
             newnotifythreshold: this.editedItem.NotifyThreshold
           }
         });
-        //alert('以下のデータを送信するよ。\n' + params)
         this.closeEditDialog()
         await this.postRequest(params)
         this.initialize()
