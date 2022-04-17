@@ -111,17 +111,17 @@ var app = new Vue({
       this.initialize()
     },
 
-    // mounted: function() {
-    //   window.onload = function () {
-    //     let vm = this
-    //     google.accounts.id.initialize({
-    //       client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
-    //       callback: vm.app.onSignIn,
-    //       context: 'signin'
-    //     });
-    //     google.accounts.id.prompt();
-    //   };
-    // },
+    mounted: function() {
+      window.onload = function () {
+        let vm = this;
+        google.accounts.id.initialize({
+          client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
+          callback: vm.app.onSignIn,
+          context: 'signin'
+        });
+        google.accounts.id.prompt();
+      };
+    },
 
     methods: {
       async initialize () {
