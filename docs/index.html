@@ -19,11 +19,11 @@
           <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title>ストック管理クライアント</v-toolbar-title>
           <v-spacer></v-spacer>
-            <p class="d-none d-sm-flex">{{ activeUser }}として実行中</p>
+            <p class="d-none d-sm-flex">{{ this.activeUser }}として実行中</p>
             <div class="d-none d-sm-flex g-signin2" data-onsuccess="onSignIn" data-theme="dark"
-              v-show="IsSignined"
+              v-show="this.IsSignined"
             ></div>
-            <a href="#" v-on:click="signOut();" v-show="!IsSignined">Sign out</a>
+            <a href="#" v-on:click="signOut();" v-show="!this.IsSignined">Sign out</a>
         </v-app-bar>
 
         <v-navigation-drawer
@@ -34,16 +34,16 @@
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title>実行中ユーザ</v-list-item-title>
-              <v-list-item-subtitle>{{ activeUser }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-list-item
-            v-show="!IsSignined"
+            v-show="!this.IsSignined"
           >
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
           </v-list-item>
           <v-list-item
-            v-show="IsSignined"
+            v-show="this.IsSignined"
           >
           <a href="#" v-on:click="signOut();">Sign out</a>
           </v-list-item>
