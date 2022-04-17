@@ -9,7 +9,7 @@
   <link href="./css/main.css" rel="stylesheet">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <title>ストック管理システム</title>
+  <title>[STG]ストック管理システム</title>
 </head>
 <body>
   <div id="app">
@@ -17,9 +17,9 @@
       <v-main>
         <v-app-bar fixed app dense dark elevation=4>
           <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-          <v-toolbar-title>ストック管理システム</v-toolbar-title>
+          <v-toolbar-title>[STG]ストック管理システム</v-toolbar-title>
           <v-spacer></v-spacer>
-          <p class="d-none d-sm-flex">{{ this.IsSignined ? this.activeUser : '未ログイン' }}</p>
+            <p class="d-none d-sm-flex">{{ this.IsSignined ? this.activeUser : '未ログイン' }}</p>
         </v-app-bar>
 
         <v-navigation-drawer
@@ -498,6 +498,6 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  <script src="./js/main.js"></script>
+  <script src="./js/main_dev.js"></script>
 </body>
 </html>
