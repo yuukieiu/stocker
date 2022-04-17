@@ -10,7 +10,6 @@
   <link href="./css/main.css" rel="stylesheet">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script type="module" src="./js/jwt-decode.js"></script>
 </head>
 <body>
   <div id="app">
@@ -25,7 +24,7 @@
               data-client_id="722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com"
               data-context="signin"
               data-ux_mode="popup"
-              data-callback="data => this.onSignIn(data)"
+              data-callback="handleCredentialResponse"
               data-auto_prompt="false">
             </div>
 
@@ -33,7 +32,7 @@
               data-type="standard"
               data-shape="pill"
               data-theme="filled_black"
-              data-text="$ {button.text}"
+              data-text="Log in"
               data-size="medium"
               data-logo_alignment="left">
             </div>

@@ -127,21 +127,19 @@ var app = new Vue({
           alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
       },
 
-      onSignIn(credentialResponse) {
-        const responseDecoded = jwt_decode(credentialResponse);
-        alert('email:' + responseDecoded.email);
-        this.EncryptedActiveUser = window.btoa(activeUser);
-        this.IsSignined = true;
+      handleCredentialResponse(resp){
+        var json = parseJwt(resp.credential);
+        var email = json.email;
+        alert(email);
       },
 
-      signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          this.activeUser = '';
-          this.EncryptedActiveUser = '';
-          this.IsSignined = false;
-        });
-        alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
+      parseJwt(tk) {
+        var base64Url = tk.split('.')[1];
+         var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
       },
 
       formatDate(date, mode) {
