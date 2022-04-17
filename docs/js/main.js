@@ -112,14 +112,12 @@ var app = new Vue({
     },
 
     mounted: function(){
-      //window.onload = function () {
-        google.accounts.id.initialize({
-          client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
-          //callback: this.handleCredentialResponse,
-          callback: data => this.handleCredentialResponse(data)
-        });
-        google.accounts.id.prompt();
-      //};
+      google.accounts.id.initialize({
+        client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
+
+        callback: data => this.handleCredentialResponse(data)
+      });
+      google.accounts.id.prompt();
     },
 
     methods: {
@@ -150,7 +148,11 @@ var app = new Vue({
       handleCredentialResponse(resp){
         var json = this.parseJwt(resp.credential);
         var email = json.email;
-        alert(email);
+        this.activeUser = email;
+        this.EncryptedActiveUser = window.btoa(this.activeUser);
+        this.IsSignined = true;
+        this.snackbarText = 'ログインしました';
+        this.snackbar = true;
       },
 
       formatDate(date, mode) {
