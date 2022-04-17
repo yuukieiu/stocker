@@ -116,8 +116,9 @@ var app = new Vue({
         let vm = this;
         google.accounts.id.initialize({
           client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
-          callback: vm.app.onSignIn,
-          context: 'signin'
+          callback: data => vm.app.onSignIn(data),
+          context: 'signin',
+          auto_select: false
         });
         google.accounts.id.prompt();
       };
