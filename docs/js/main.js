@@ -128,17 +128,17 @@ var app = new Vue({
 
       onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
-        activeUser = profile.getEmail();
-        EncryptedActiveUser = window.btoa(activeUser);
-        IsSignined = true;
+        this.activeUser = profile.getEmail();
+        this.EncryptedActiveUser = window.btoa(activeUser);
+        this.IsSignined = true;
       },
 
       signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
-            activeUser = '';
-            EncryptedActiveUser = '';
-            IsSignined = false;
+          this.activeUser = '';
+          this.EncryptedActiveUser = '';
+          this.IsSignined = false;
         });
       },
 
