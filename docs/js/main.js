@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 const TARGET_URL = "https://script.google.com/macros/s/AKfycbwNqvlm_oag5VhLOtvBwBFL90cLLo6ryh0z0a297bfpL_o9EPNDa35no7ESL5H9X1VS/exec";
 const TARGET_URL_GETCATEGORY = TARGET_URL + "?p1=getcat";
 const TARGET_URL_GETLASTHISTORY = TARGET_URL + "?p1=gethis&p2=";
@@ -125,6 +127,11 @@ var app = new Vue({
           })
           .finally(() => vm.loading = false)
           alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
+      },
+
+      login(credentialResponse) {
+        const responseDecoded = jwt_decode(response);
+        alert('email:' + responseDecoded.email);
       },
 
       onSignIn(googleUser) {

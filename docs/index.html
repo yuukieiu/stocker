@@ -10,9 +10,15 @@
   <link href="./css/main.css" rel="stylesheet">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="./js/jwt-decode.js"></script>
 </head>
 <body>
   <div id="app">
+    <div id="g_id_onload"
+      data-client_id="722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com"
+      data-context="signin"
+      data-callback="login">
+    </div>
     <v-app>
       <v-main>
         <v-app-bar fixed app dense dark elevation=4>
@@ -20,12 +26,6 @@
           <v-toolbar-title>ストック管理クライアント</v-toolbar-title>
           <v-spacer></v-spacer>
             <p class="d-none d-sm-flex">{{ this.activeUser }}として実行中</p>
-            <div id="g_id_onload"
-              class="d-none d-sm-flex"
-              data-client_id="722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com"
-              data-context="signin"
-              data-login_uri="https://yuukieiu.github.io/stocker/">
-            </div>
         </v-app-bar>
 
         <v-navigation-drawer
@@ -38,13 +38,6 @@
               <v-list-item-title>実行中ユーザ</v-list-item-title>
               <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
             </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <div id="g_id_onload"
-              data-client_id="722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com"
-              data-context="signin"
-              data-login_uri="https://yuukieiu.github.io/stocker/">
-            </div>
           </v-list-item>
         </v-navigation-drawer>
 
