@@ -124,6 +124,7 @@ var app = new Vue({
             vm.stockerList = response.data
           })
           .finally(() => vm.loading = false)
+          alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
       },
 
       onSignIn(googleUser) {
@@ -140,6 +141,7 @@ var app = new Vue({
           this.EncryptedActiveUser = '';
           this.IsSignined = false;
         });
+        alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
       },
 
       formatDate(date, mode) {
