@@ -13,28 +13,7 @@
   <script type="module" src="./js/jwt-decode.js"></script>
 </head>
 <body>
-  <div id="g_id_onload"
-    data-client_id="722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com"
-    data-context="signin"
-    data-ux_mode="redirect"
-    data-login_uri="https://yuukieiu.github.io/stocker/"
-    data-auto_prompt="false">
-  </div>
-
-  <div class="g_id_signin"
-    data-type="standard"
-    data-shape="pill"
-    data-theme="filled_black"
-    data-text="$ {button.text}"
-    data-size="medium"
-    data-logo_alignment="left">
-  </div>
   <div id="app">
-    <div id="g_id_onload"
-      data-client_id="722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com"
-      data-context="signin"
-      data-callback="this.app.login">
-    </div>
     <v-app>
       <v-main>
         <v-app-bar fixed app dense dark elevation=4>
@@ -42,7 +21,22 @@
           <v-toolbar-title>ストック管理クライアント</v-toolbar-title>
           <v-spacer></v-spacer>
             <p class="d-none d-sm-flex">{{ this.activeUser }}として実行中</p>
-            <div class="g_id_signout">Sign Out</div>
+            <div id="g_id_onload"
+              data-client_id="722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com"
+              data-context="signin"
+              data-ux_mode="redirect"
+              data-login_uri="https://yuukieiu.github.io/stocker/"
+              data-auto_prompt="false">
+            </div>
+
+            <div class="g_id_signin"
+              data-type="standard"
+              data-shape="pill"
+              data-theme="filled_black"
+              data-text="$ {button.text}"
+              data-size="medium"
+              data-logo_alignment="left">
+            </div>
         </v-app-bar>
 
         <v-navigation-drawer
