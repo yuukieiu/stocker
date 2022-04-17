@@ -138,12 +138,6 @@ var app = new Vue({
           alert('activeUser:' + this.activeUser +'\r\nIsSignined:' + this.IsSignined);
       },
 
-      handleCredentialResponse(resp){
-        var json = parseJwt(resp.credential);
-        var email = json.email;
-        alert(email);
-      },
-
       parseJwt(tk) {
         var base64Url = tk.split('.')[1];
          var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -151,6 +145,12 @@ var app = new Vue({
           return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
         return JSON.parse(jsonPayload);
+      },
+
+      handleCredentialResponse(resp){
+        var json = this.parseJwt(resp.credential);
+        var email = json.email;
+        alert(email);
       },
 
       formatDate(date, mode) {
