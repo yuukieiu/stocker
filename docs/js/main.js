@@ -139,12 +139,12 @@ var app = new Vue({
       },
 
       login(credentialResponse) {
-        const responseDecoded = jwt_decode(response);
+        const responseDecoded = jwt_decode(credentialResponse);
         alert('email:' + responseDecoded.email);
       },
 
-      onSignIn(googleUser) {
-        const responseDecoded = jwt_decode(response);
+      onSignIn(credentialResponse) {
+        const responseDecoded = jwt_decode(credentialResponse);
         alert('email:' + responseDecoded.email);
         this.EncryptedActiveUser = window.btoa(activeUser);
         this.IsSignined = true;
