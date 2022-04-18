@@ -17,6 +17,7 @@ var app = new Vue({
       stockerList: [],
       categoryList: [],
       loading: true,
+      loadingVisible: IsSignined && loading,
       undoLoading: false,
       createDialog: false,
       addDialog: false,
