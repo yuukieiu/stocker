@@ -17,7 +17,10 @@ var app = new Vue({
       stockerList: [],
       categoryList: [],
       loading: true,
-      loadingVisible: IsSignined && loading,
+      loadingVisible: true,
+      pleaseLoginText: 'Please Log in First.',
+      loadingText: 'Loading... Please wait',
+      loadingTextDisplay: 'Please Log in First.',
       undoLoading: false,
       createDialog: false,
       addDialog: false,
@@ -130,7 +133,11 @@ var app = new Vue({
           .then(response => {
             vm.stockerList = response.data
           })
-          .finally(() => vm.loading = false)
+          .finally(() => {
+            vm.loading = false;
+            vm.loadingTextDisplay = vm.pleaseLoginText;
+            if (vm.IsSignined) vm.loadingVisible = false;
+          })
       },
 
       parseJwt(tk) {
@@ -150,6 +157,8 @@ var app = new Vue({
         this.IsSignined = true;
         this.snackbarText = 'ログインしました';
         this.snackbar = true;
+        if (!this.loading) this.loadingVisible = false;
+        this.loadingTextDisplay = this.loadingText;
       },
 
       formatDate(date, mode) {
