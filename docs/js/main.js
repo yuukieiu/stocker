@@ -114,6 +114,7 @@ var app = new Vue({
         ux_mode: 'popup',
         context: 'signin'
       });
+      google.accounts.id.prompt();
     },
 
     mounted: function(){
@@ -123,7 +124,7 @@ var app = new Vue({
       //   ux_mode: 'popup',
       //   context: 'signin'
       // });
-      google.accounts.id.prompt();
+      // google.accounts.id.prompt();
     },
 
     methods: {
