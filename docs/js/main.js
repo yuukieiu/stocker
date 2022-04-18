@@ -117,16 +117,6 @@ var app = new Vue({
       google.accounts.id.prompt();
     },
 
-    mounted: function(){
-      // google.accounts.id.initialize({
-      //   client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
-      //   callback: data => this.handleCredentialResponse(data),
-      //   ux_mode: 'popup',
-      //   context: 'signin'
-      // });
-      // google.accounts.id.prompt();
-    },
-
     methods: {
       async initialize () {
         let vm = this
