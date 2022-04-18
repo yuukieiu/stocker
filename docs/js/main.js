@@ -213,7 +213,7 @@ var app = new Vue({
 
       async addStockConfirm (item) {
         var params = JSON.stringify({
-          encryptedEmail: EncryptedActiveUser,
+          encryptedEmail: this.EncryptedActiveUser,
           method: 'push',
           stocker: {
             id: this.editedItem.StockerID,
@@ -245,7 +245,7 @@ var app = new Vue({
 
       async subStockConfirm (item) {
         var params = JSON.stringify({
-          encryptedEmail: EncryptedActiveUser,
+          encryptedEmail: this.EncryptedActiveUser,
           method: 'pop',
           stocker: {
             id: this.editedItem.StockerID,
@@ -266,7 +266,7 @@ var app = new Vue({
 
       async deleteItemConfirm () {
         var params = JSON.stringify({
-          encryptedEmail: EncryptedActiveUser,
+          encryptedEmail: this.EncryptedActiveUser,
           method: 'delete',
           stocker: {
             id: this.editedItem.StockerID
@@ -279,7 +279,7 @@ var app = new Vue({
 
       async undoItemConfirm () {
         var params = JSON.stringify({
-          encryptedEmail: EncryptedActiveUser,
+          encryptedEmail: this.EncryptedActiveUser,
           method: 'undo',
           stocker: {
             id: this.historyItem.StockerID,
@@ -324,7 +324,7 @@ var app = new Vue({
 
       async create () {
         var params = JSON.stringify({
-          encryptedEmail: EncryptedActiveUser,
+          encryptedEmail: this.EncryptedActiveUser,
           method: 'create',
           stocker: {
             name: this.editedItem.StockerName,
@@ -348,7 +348,7 @@ var app = new Vue({
 
       async edit () {
         var params = JSON.stringify({
-          encryptedEmail: EncryptedActiveUser,
+          encryptedEmail: this.EncryptedActiveUser,
           method: 'edit',
           stocker: {
             id: this.editedItem.StockerID,
