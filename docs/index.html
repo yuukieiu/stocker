@@ -78,8 +78,8 @@
             :single-select="true"
             item-key="StockerName"
             class="elevation-1"
-            :loading="loading"
-            loading-text="Loading... Please wait"
+            :loading="loading && IsSignined"
+            loading-text="IsSignined ? Loading... Please wait : Please Log in First."
             :search="search"
             dense
             fixed-header
