@@ -108,15 +108,21 @@ var app = new Vue({
 
     created: function(){
       this.initialize()
-    },
-
-    mounted: function(){
       google.accounts.id.initialize({
         client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
         callback: data => this.handleCredentialResponse(data),
         ux_mode: 'popup',
         context: 'signin'
       });
+    },
+
+    mounted: function(){
+      // google.accounts.id.initialize({
+      //   client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
+      //   callback: data => this.handleCredentialResponse(data),
+      //   ux_mode: 'popup',
+      //   context: 'signin'
+      // });
       google.accounts.id.prompt();
     },
 
