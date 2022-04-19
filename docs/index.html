@@ -19,8 +19,7 @@
           <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title>ストック管理システム</v-toolbar-title>
           <v-spacer></v-spacer>
-            <p class="d-none d-sm-flex">{{ this.IsSignined ? this.activeUser : '未ログイン' }}</p>
-            <div class="g_id_signin"
+            <div class="g_id_signin d-none d-sm-flex"
               data-type="standard"
               data-shape="rectangular"
               data-theme="filled_black"
@@ -37,8 +36,14 @@
         >
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>実行中ユーザ</v-list-item-title>
-              <v-list-item-subtitle>{{ this.IsSignined ? this.activeUser : '未ログイン' }}</v-list-item-subtitle>
+              <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="filled_black"
+                data-text="$ {button.text}"
+                data-size="large"
+                data-logo_alignment="left">
+              </div>
             </v-list-item-content>
           </v-list-item>
         </v-navigation-drawer>
