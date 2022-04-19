@@ -111,7 +111,7 @@ var app = new Vue({
     },
 
     created: function(){
-      this.initialize()
+      //this.initialize()
       google.accounts.id.initialize({
         client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
         callback: data => this.handleCredentialResponse(data),
@@ -159,6 +159,7 @@ var app = new Vue({
         this.snackbar = true;
         if (!this.loading) this.loadingVisible = false;
         this.loadingTextDisplay = this.loadingText;
+        this.initialize();
       },
 
       formatDate(date, mode) {
