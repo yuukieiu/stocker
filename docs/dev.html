@@ -20,8 +20,8 @@
           <v-toolbar-title>[STG]ストック管理システム</v-toolbar-title>
           <v-spacer></v-spacer>
           <p class="d-none d-sm-flex" v-show="this.IsSignined">{{ this.activeUser }}</p>
+          <div v-show="!this.IsSignined">
             <div class="g_id_signin d-none d-sm-flex"
-              v-show="!this.IsSignined"
               data-type="standard"
               data-shape="rectangular"
               data-theme="filled_black"
@@ -30,6 +30,7 @@
               data-logo_alignment="left"
               >
             </div>
+          </div>
         </v-app-bar>
 
         <v-navigation-drawer
