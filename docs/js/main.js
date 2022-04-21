@@ -116,22 +116,24 @@ var app = new Vue({
         client_id: '722523810740-kvfntbt85sa0lcmi069vt68255fb5bu2.apps.googleusercontent.com',
         callback: data => this.handleCredentialResponse(data),
         ux_mode: 'popup',
-        context: 'signin'
+        context: 'signin',
+        auto_select: 'true'
       });
       google.accounts.id.prompt();
     },
 
     methods: {
       async initialize () {
-        let vm = this
-        vm.loading = true
+        let vm = this;
+        vm.loading = true;
+        vm.loadingVisible = true;
         await axios.get(TARGET_URL_GETCATEGORY)
           .then(response => {
-            vm.categoryList = response.data
+            vm.categoryList = response.data;
           });
         await axios.get(TARGET_URL)
           .then(response => {
-            vm.stockerList = response.data
+            vm.stockerList = response.data;
           })
           .finally(() => {
             vm.loading = false;
