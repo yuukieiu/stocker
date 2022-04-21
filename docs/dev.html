@@ -21,13 +21,14 @@
           <v-spacer></v-spacer>
           <p class="d-none d-sm-flex" v-show="this.IsSignined">{{ this.activeUser }}</p>
             <div class="g_id_signin d-none d-sm-flex"
+              v-show="!this.IsSignined"
               data-type="standard"
               data-shape="rectangular"
               data-theme="filled_black"
               data-text="$ {button.text}"
               data-size="large"
               data-logo_alignment="left"
-              v-show="!this.IsSignined">
+              >
             </div>
         </v-app-bar>
 
@@ -41,7 +42,7 @@
               <v-list-item-title>実行中ユーザ</v-list-item-title>
               <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
             </v-list-item-content>
-            <v-list-item-content v-show="!this.IsSignined"></v-list-item-content>
+            <v-list-item-content v-show="!this.IsSignined">
               <div class="g_id_signin"
                 data-type="standard"
                 data-shape="rectangular"
