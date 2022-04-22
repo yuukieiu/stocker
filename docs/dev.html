@@ -43,6 +43,8 @@
               <v-list-item-title>実行中ユーザ</v-list-item-title>
               <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
             </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
             <v-list-item-content v-show="!this.IsSignined">
               <div class="g_id_signin"
                 data-type="standard"
@@ -53,6 +55,8 @@
                 data-logo_alignment="left">
               </div>
             </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
             <v-list-item-content v-show="this.IsSignined">
               <!--ストック品追加ボタン-->
               <v-btn color="primary" dark class="mx-2" @click="drawer = false; createDialog = true">ストック品追加</v-btn>
