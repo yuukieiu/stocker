@@ -18,7 +18,6 @@
         <v-app-bar fixed app dense dark elevation=4>
           <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title>[STG]ストック管理システム</v-toolbar-title>
-          <a class="d-none d-sm-flex" v-show="this.IsSignined" href="javascript:void(0);" onclick="google.accounts.id.disableAutoSelect(); this.IsSignined = false">サインアウト</a>
           <v-spacer></v-spacer>
           <p class="d-none d-sm-flex" v-show="this.IsSignined">{{ this.activeUser }}</p>
           <div v-show="!this.IsSignined">
@@ -43,7 +42,6 @@
             <v-list-item-content>
               <v-list-item-title>実行中ユーザ</v-list-item-title>
               <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
-              <v-list-item-subtitle><a class="d-none d-sm-flex" v-show="this.IsSignined" href="javascript:void(0);" onclick="google.accounts.id.disableAutoSelect(); this.IsSignined = false">サインアウト</a></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-list-item v-show="!this.IsSignined">
@@ -60,7 +58,11 @@
           </v-list-item>
           <v-divider></v-divider>
           <!--ストック品追加ボタン-->
-          <v-list-item v-show="this.IsSignined" link @click="drawer = false; createDialog = true">
+          <v-list-item
+            v-show="this.IsSignined"
+            link
+            color="primary"
+            @click="drawer = false; createDialog = true">
             <v-list-item-content>
               <v-list-item-title>ストック品追加</v-list-item-title>
             </v-list-item-content>
