@@ -55,7 +55,7 @@
             </v-list-item-content>
             <v-list-item-content v-show="this.IsSignined">
               <!--ストック品追加ボタン-->
-              <v-btn color="primary" dark class="mb-2" v-bind="attrs" @click="createDialog = true">ストック品追加</v-btn>
+              <v-btn color="primary" dark class="mx-2" v-bind="attrs" @click="drawer = false; createDialog = true">ストック品追加</v-btn>
             </v-list-item-content>
           </v-list-item>
         </v-navigation-drawer>

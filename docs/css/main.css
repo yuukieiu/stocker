@@ -7,3 +7,7 @@
 .v-data-table tr:hover td {
     background-color: #546E7A;
 }
+
+body {
+    overscroll-behavior-y: none;
+}
