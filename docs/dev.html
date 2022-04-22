@@ -18,7 +18,7 @@
         <v-app-bar fixed app dense dark elevation=4>
           <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title>[STG]ストック管理システム</v-toolbar-title>
-          <div class="g_id_signout d-none d-sm-flex" v-show="this.IsSignined">サインアウト</div>
+          <div class="g_id_signout d-none d-sm-flex" v-show="this.IsSignined" @click="this.IsSignined = false">サインアウト</div>
           <v-spacer></v-spacer>
           <p class="d-none d-sm-flex" v-show="this.IsSignined">{{ this.activeUser }}</p>
           <div v-show="!this.IsSignined">
@@ -43,7 +43,7 @@
             <v-list-item-content>
               <v-list-item-title>実行中ユーザ</v-list-item-title>
               <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
-              <v-list-item-subtitle><div class="g_id_signout">ストック管理システムからサインアウト</div></v-list-item-subtitle>
+              <v-list-item-subtitle><div class="g_id_signout" @click="this.IsSignined = false">ストック管理システムからサインアウト</div></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-list-item v-show="!this.IsSignined">
