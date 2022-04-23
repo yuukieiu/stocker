@@ -19,14 +19,18 @@
           <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title>ストック管理システム</v-toolbar-title>
           <v-spacer></v-spacer>
+          <p class="d-none d-sm-flex" v-show="this.IsSignined">{{ this.activeUser }}</p>
+          <div v-show="!this.IsSignined">
             <div class="g_id_signin d-none d-sm-flex"
               data-type="standard"
               data-shape="rectangular"
               data-theme="filled_black"
               data-text="$ {button.text}"
               data-size="large"
-              data-logo_alignment="left">
+              data-logo_alignment="left"
+              >
             </div>
+          </div>
         </v-app-bar>
 
         <v-navigation-drawer
@@ -34,18 +38,44 @@
           absolute
           temporary
         >
-          <v-list-item>
-            <v-list-item-content>
-              <div class="g_id_signin"
-                data-type="standard"
-                data-shape="rectangular"
-                data-theme="filled_black"
-                data-text="$ {button.text}"
-                data-size="large"
-                data-logo_alignment="left">
-              </div>
-            </v-list-item-content>
-          </v-list-item>
+          <v-list>
+            <v-list-item v-show="this.IsSignined">
+              <v-list-item-content>
+                <v-list-item-title>実行中ユーザ</v-list-item-title>
+                <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item v-show="!this.IsSignined">
+              <v-list-item-content>
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="filled_black"
+                  data-text="$ {button.text}"
+                  data-size="large"
+                  data-logo_alignment="left">
+                </div>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-divider></v-divider>
+          <v-list
+            nav
+            dense
+          >
+          <!--ストック品追加ボタン-->
+            <v-list-item
+              v-show="this.IsSignined"
+              link
+              color="info"
+              class="gray--text text--lighten-5"
+              input-value="true"
+              @click="drawer = false; createDialog = true">
+              <v-list-item-content>
+                <v-list-item-title>ストック品追加</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-navigation-drawer>
 
 
@@ -83,7 +113,7 @@
             :single-select="true"
             item-key="StockerName"
             class="elevation-1"
-            :loading="loadingVisible"
+            :loading="loading"
             :loading-text="loadingTextDisplay"
             :search="search"
             dense
@@ -114,103 +144,118 @@
                   class="px-2"
                 ></v-text-field>
 
-                <!--ストック品追加ダイアログ-->
-                <v-dialog v-model="createDialog" max-width="500px">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">ストック品追加</v-btn>
-                  </template>
-                  <v-card>
-                    <v-card-title>
-                      <span class="text-h5">ストック品追加</span>
-                    </v-card-title>
-                    <v-card-text>
-                      <v-container>
-                        <v-row>
-                          <v-col cols="12" sm="6" md="4">
-                            <v-text-field
-                              v-model="editedItem.StockerName"
-                              label="ストック品名（必須）"
-                              required
-                            ></v-text-field>
-                          </v-col>
-                          <v-col cols="12" sm="6" md="4">
-                            <v-combobox
-                              v-model="editedItem.Category"
-                              :items="categoryList"
-                              label="分類（必須）"
-                              required
-                            ></v-combobox>
-                          </v-col>
-                          <v-col cols="12" sm="6" md="4">
-                            <v-select
-                              v-model.number="editedItem.StockCount"
-                              :items="numberItemsInclZero"
-                              label="ストック数"
-                              required
-                            ></v-select>
-                          </v-col>
-                          <v-col cols="12" sm="6" md="4">
-                            <v-menu
-                              v-model="lastBuyDateMenuCreate"
-                              :close-on-content-click="false"
-                              :nudge-right="40"
-                              transition="scale-transition"
-                              offset-y
-                              min-width="auto"
-                            >
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-text-field
-                                v-model="editedItem.LastBuyDateDisplay"
-                                label="最終購入日"
-                                prepend-icon="mdi-calendar"
-                                v-bind="attrs"
-                                v-on="on"
-                                readonly
-                              >
-                              </v-text-field>
-                            </template>
-                            <v-date-picker v-model="editedItem.LastBuyDate" @input="formatDate(editedItem.LastBuyDate, 'LastBuyDateCreate')"/>
-                          </v-col>
-                          <v-col cols="12" sm="6" md="4">
-                            <v-menu
-                              v-model="lastUnsealDateMenuCreate"
-                              :close-on-content-click="false"
-                              :nudge-right="40"
-                              transition="scale-transition"
-                              offset-y
-                              min-width="auto"
-                            >
-                            <template v-slot:activator="{ on, attrs }">
-                              <v-text-field
-                                v-model="editedItem.LastUnsealDateDisplay"
-                                label="最終開封日"
-                                prepend-icon="mdi-calendar"
-                                v-bind="attrs"
-                                v-on="on"
-                                readonly
-                              >
-                              </v-text-field>
-                            </template>
-                            <v-date-picker v-model="editedItem.LastUnsealDate" @input="formatDate(editedItem.LastUnsealDate, 'LastUnsealDateCreate')"/>
-                          </v-col>
-                          <v-col cols="12" sm="6" md="4">
-                            <v-select
-                              v-model.number="editedItem.NotifyThreshold"
-                              :items="numberItemsInclZero"
-                              label="通知閾値"
-                            ></v-select>
-                          </v-col>
-                        </v-row>
-                      </v-container>
-                    </v-card-text>
+                <!-- リロードボタン -->
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  small
+                  color="primary"
+                  @click="initialize"
+                  :loading="loading"
+                >
+                  <v-icon dark>
+                    mdi-refresh
+                  </v-icon>
+                </v-btn>
 
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn color="blue darken-1" text @click="closeCreateDialog">キャンセル</v-btn>
-                      <v-btn color="blue darken-1" text @click="create">作成</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
+                <!--ストック品追加ダイアログ-->
+              <v-dialog v-model="createDialog" max-width="500px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn color="primary" dark class="mb-2 d-none d-sm-flex" v-bind="attrs" v-on="on">ストック品追加</v-btn>
+                </template>
+                <v-card>
+                  <v-card-title>
+                    <span class="text-h5">ストック品追加</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.StockerName"
+                            label="ストック品名（必須）"
+                            required
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-combobox
+                            v-model="editedItem.Category"
+                            :items="categoryList"
+                            label="分類（必須）"
+                            required
+                          ></v-combobox>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-select
+                            v-model.number="editedItem.StockCount"
+                            :items="numberItemsInclZero"
+                            label="ストック数"
+                            required
+                          ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-menu
+                            v-model="lastBuyDateMenuCreate"
+                            :close-on-content-click="false"
+                            :nudge-right="40"
+                            transition="scale-transition"
+                            offset-y
+                            min-width="auto"
+                          >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="editedItem.LastBuyDateDisplay"
+                              label="最終購入日"
+                              prepend-icon="mdi-calendar"
+                              v-bind="attrs"
+                              v-on="on"
+                              readonly
+                            >
+                            </v-text-field>
+                          </template>
+                          <v-date-picker v-model="editedItem.LastBuyDate" @input="formatDate(editedItem.LastBuyDate, 'LastBuyDateCreate')"/>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-menu
+                            v-model="lastUnsealDateMenuCreate"
+                            :close-on-content-click="false"
+                            :nudge-right="40"
+                            transition="scale-transition"
+                            offset-y
+                            min-width="auto"
+                          >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="editedItem.LastUnsealDateDisplay"
+                              label="最終開封日"
+                              prepend-icon="mdi-calendar"
+                              v-bind="attrs"
+                              v-on="on"
+                              readonly
+                            >
+                            </v-text-field>
+                          </template>
+                          <v-date-picker v-model="editedItem.LastUnsealDate" @input="formatDate(editedItem.LastUnsealDate, 'LastUnsealDateCreate')"/>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-select
+                            v-model.number="editedItem.NotifyThreshold"
+                            :items="numberItemsInclZero"
+                            label="通知閾値"
+                          ></v-select>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="closeCreateDialog">キャンセル</v-btn>
+                    <v-btn color="blue darken-1" text @click="create">作成</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
 
                 <!--ストック追加ダイアログ-->
                 <v-dialog v-model="addDialog" max-width="500px">
