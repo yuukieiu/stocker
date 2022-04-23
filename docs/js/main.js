@@ -17,7 +17,6 @@ var app = new Vue({
       stockerList: [],
       categoryList: [],
       loading: true,
-      loadingVisible: true,
       pleaseLoginText: 'Please Log in First.',
       loadingText: 'Loading... Please wait',
       loadingTextDisplay: 'Please Log in First.',
@@ -126,7 +125,6 @@ var app = new Vue({
       async initialize () {
         let vm = this;
         vm.loading = true;
-        vm.loadingVisible = true;
         await axios.get(TARGET_URL_GETCATEGORY)
           .then(response => {
             vm.categoryList = response.data;
@@ -138,7 +136,6 @@ var app = new Vue({
           .finally(() => {
             vm.loading = false;
             vm.loadingTextDisplay = vm.pleaseLoginText;
-            if (vm.IsSignined) vm.loadingVisible = false;
           })
       },
 
@@ -159,7 +156,6 @@ var app = new Vue({
         this.IsSignined = true;
         this.snackbarText = 'ログインしました';
         this.snackbar = true;
-        if (!this.loading) this.loadingVisible = false;
         this.loadingTextDisplay = this.loadingText;
         this.initialize();
       },

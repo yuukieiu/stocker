@@ -61,7 +61,7 @@
           <v-list-item
             v-show="this.IsSignined"
             link
-            color="primary"
+            color="secondary"
             input-value="true"
             @click="drawer = false; createDialog = true">
             <v-list-item-content>
@@ -105,7 +105,7 @@
             :single-select="true"
             item-key="StockerName"
             class="elevation-1"
-            :loading="loadingVisible"
+            :loading="loading"
             :loading-text="loadingTextDisplay"
             :search="search"
             dense
@@ -144,7 +144,7 @@
                   small
                   color="primary"
                   @click="initialize"
-                  :loading="loadingVisible"
+                  :loading="loading"
                 >
                   <v-icon dark>
                     mdi-refresh
