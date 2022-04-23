@@ -38,36 +38,46 @@
           absolute
           temporary
         >
-          <v-list-item v-show="this.IsSignined">
-            <v-list-item-content>
-              <v-list-item-title>実行中ユーザ</v-list-item-title>
-              <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item v-show="!this.IsSignined">
-            <v-list-item-content>
-              <div class="g_id_signin"
-                data-type="standard"
-                data-shape="rectangular"
-                data-theme="filled_black"
-                data-text="$ {button.text}"
-                data-size="large"
-                data-logo_alignment="left">
-              </div>
-            </v-list-item-content>
-          </v-list-item>
+          <v-list
+            nav
+            dense
+          >
+            <v-list-item v-show="this.IsSignined">
+              <v-list-item-content>
+                <v-list-item-title>実行中ユーザ</v-list-item-title>
+                <v-list-item-subtitle>{{ this.activeUser }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item v-show="!this.IsSignined">
+              <v-list-item-content>
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="filled_black"
+                  data-text="$ {button.text}"
+                  data-size="large"
+                  data-logo_alignment="left">
+                </div>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
           <v-divider></v-divider>
+          <v-list
+            nav
+            dense
+          >
           <!--ストック品追加ボタン-->
-          <v-list-item
-            v-show="this.IsSignined"
-            link
-            class="gray--text text--lighten-5 gray darken-5"
-            input-value="true"
-            @click="drawer = false; createDialog = true">
-            <v-list-item-content>
-              <v-list-item-title>ストック品追加</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+            <v-list-item
+              v-show="this.IsSignined"
+              link
+              class="gray--text text--lighten-5 gray darken-5"
+              input-value="true"
+              @click="drawer = false; createDialog = true">
+              <v-list-item-content>
+                <v-list-item-title>ストック品追加</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-navigation-drawer>
 
 
