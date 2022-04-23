@@ -16,7 +16,7 @@ var app = new Vue({
       selected: [],
       stockerList: [],
       categoryList: [],
-      loading: true,
+      loading: false,
       pleaseLoginText: 'Please Log in First.',
       loadingText: 'Loading... Please wait',
       loadingTextDisplay: 'Please Log in First.',
