@@ -38,10 +38,7 @@
           absolute
           temporary
         >
-          <v-list
-            nav
-            dense
-          >
+          <v-list>
             <v-list-item v-show="this.IsSignined">
               <v-list-item-content>
                 <v-list-item-title>実行中ユーザ</v-list-item-title>
@@ -71,6 +68,7 @@
               v-show="this.IsSignined"
               link
               color="info"
+              class="gray--text text--lighten-5"
               input-value="true"
               @click="drawer = false; createDialog = true">
               <v-list-item-content>
