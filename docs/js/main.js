@@ -193,6 +193,12 @@ var app = new Vue({
         return;
       },
 
+      deformatDate(date) {
+        if (!date) return null;
+        const [year, month, day] = date.split("/");
+        return `${year}-${month}-${day}`;
+      },
+
       addStock (item) {
         this.editedIndex = this.stockerList.indexOf(item)
         this.editedItem = Object.assign({}, item)
@@ -344,7 +350,9 @@ var app = new Vue({
         this.editedItem = Object.assign({}, item)
         this.editedItem.TargetStockerName = this.editedItem.StockerName
         this.editedItem.LastBuyDateDisplay = this.editedItem.LastBuyDate
+        this.editedItem.LastBuyDate = this.deformatDate(this.editedItem.LastBuyDate)
         this.editedItem.LastUnsealDateDisplay = this.editedItem.LastUnsealDate
+        this.editedItem.LastUnsealDate = this.deformatDate(this.editedItem.LastUnsealDate)
       },
 
       async edit () {
