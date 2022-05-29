@@ -343,6 +343,8 @@ var app = new Vue({
         this.editedIndex = this.stockerList.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.editedItem.TargetStockerName = this.editedItem.StockerName
+        this.editedItem.LastBuyDateDisplay = this.editedItem.LastBuyDate
+        this.editedItem.LastUnsealDateDisplay = this.editedItem.LastUnsealDate
       },
 
       async edit () {
